@@ -1,0 +1,230 @@
+.faq-section {
+  background-color: var(--white);
+  padding: var(--spacing-4xl) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-4xl);
+}
+
+.section-header h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-header p {
+  font-size: var(--font-size-lg);
+  color: var(--gray-600);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faq-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-3xl);
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.faq-item {
+  background-color: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.faq-item.active {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+  width: 100%;
+  padding: var(--spacing-xl);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--gray-900);
+  transition: all var(--transition-normal);
+}
+
+.faq-question:hover {
+  background-color: var(--gray-50);
+}
+
+.faq-item.active .faq-question {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.faq-icon {
+  transition: transform var(--transition-normal);
+  color: var(--gray-500);
+}
+
+.faq-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.faq-item.active .faq-icon {
+  color: var(--primary-color);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.faq-answer.open {
+  max-height: 200px;
+}
+
+.faq-answer p {
+  padding: 0 var(--spacing-xl) var(--spacing-xl);
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.faq-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+.help-card {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  color: var(--white);
+  text-align: center;
+}
+
+.help-card h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.help-card p {
+  margin-bottom: var(--spacing-xl);
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.help-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.help-options .btn {
+  width: 100%;
+}
+
+.help-options .btn-outline {
+  background-color: transparent;
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.help-options .btn-outline:hover {
+  background-color: var(--white);
+  color: var(--primary-color);
+}
+
+.quick-links {
+  background-color: var(--gray-50);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+}
+
+.quick-links h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-lg);
+}
+
+.quick-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.quick-links a {
+  color: var(--gray-700);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  transition: color var(--transition-normal);
+}
+
+.quick-links a:hover {
+  color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .faq-sidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .faq-question {
+    padding: var(--spacing-lg);
+    font-size: var(--font-size-base);
+  }
+
+  .faq-answer p {
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
+  }
+
+  .help-card {
+    padding: var(--spacing-xl);
+  }
+
+  .section-header h2 {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-question {
+    padding: var(--spacing-md);
+  }
+
+  .faq-answer p {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+  }
+
+  .help-card {
+    padding: var(--spacing-lg);
+  }
+
+  .help-options {
+    gap: var(--spacing-sm);
+  }
+}

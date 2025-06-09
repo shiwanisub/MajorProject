@@ -1,0 +1,189 @@
+.home {
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.home section {
+  width: 100%;
+  margin-bottom: var(--spacing-4xl);
+  padding: var(--spacing-3xl) 0;
+  position: relative;
+}
+
+.home section:first-child {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.home section:not(:first-child) {
+  border-top: 1px solid var(--gray-100);
+}
+
+.home section:last-child {
+  margin-bottom: 0;
+}
+
+/* Better section spacing */
+.home .trust-indicators {
+  padding: var(--spacing-2xl) 0;
+  background-color: var(--gray-50);
+}
+
+.home .stats-section {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--white);
+}
+
+.home .how-it-works {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--gray-50);
+}
+
+.home .featured-services {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--white);
+}
+
+.home .why-choose-us {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--gray-50);
+}
+
+.home .recent-events {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--white);
+}
+
+.home .testimonials {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--gray-50);
+}
+
+.home .faq-section {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--white);
+}
+
+.home .newsletter {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--primary-color);
+}
+
+.home .call-to-action {
+  padding: var(--spacing-4xl) 0;
+  background-color: var(--gray-900);
+}
+
+/* Container max-width to prevent zoom issues */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+  
+  .home section {
+    padding: var(--spacing-2xl) 0;
+    margin-bottom: var(--spacing-2xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 540px;
+    padding: 0 var(--spacing-md);
+  }
+  
+  .home section {
+    padding: var(--spacing-xl) 0;
+    margin-bottom: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .home section {
+    padding: var(--spacing-lg) 0;
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* Ensure base font size */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: var(--gray-900);
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+/* Reset zoom and scaling issues */
+* {
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* Section transitions */
+.home section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-in-out;
+}
+
+/* Loading animation for sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Clear section separations */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+  margin: var(--spacing-2xl) 0;
+}

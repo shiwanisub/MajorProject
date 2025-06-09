@@ -1,0 +1,337 @@
+.event-booking-page {
+  min-height: 100vh;
+  background-color: var(--gray-50);
+  padding: var(--spacing-lg) 0;
+}
+
+.booking-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-sidebar {
+  position: sticky;
+  top: var(--spacing-xl);
+  height: fit-content;
+}
+
+.event-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.event-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-info {
+  padding: var(--spacing-lg);
+}
+
+.event-info h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--gray-900);
+}
+
+.event-details {
+  margin-bottom: var(--spacing-md);
+}
+
+.event-date,
+.event-venue,
+.event-organizer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+}
+
+.booking-main {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.booking-header {
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.booking-header h1 {
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-sm);
+}
+
+.booking-header p {
+  color: var(--gray-600);
+  margin-bottom: 0;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+}
+
+.progress-steps::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: var(--gray-300);
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  max-width: 150px;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  transition: all var(--transition-normal);
+}
+
+.step.active .step-number {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.step.completed .step-number {
+  background: var(--success-color);
+  color: var(--white);
+}
+
+.step-label {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  text-align: center;
+}
+
+.step.active .step-label {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.booking-form {
+  margin-bottom: var(--spacing-xl);
+}
+
+.step-content h3 {
+  margin-bottom: var(--spacing-lg);
+  color: var(--gray-900);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.ticket-selection {
+  margin-bottom: var(--spacing-lg);
+}
+
+.ticket-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.ticket-type-card {
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.ticket-type-card:hover {
+  border-color: var(--primary-light);
+}
+
+.ticket-type-card.selected {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.ticket-info h4 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.ticket-price {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.ticket-available {
+  font-size: var(--font-size-sm);
+  opacity: 0.8;
+  margin-bottom: 0;
+}
+
+.price-summary {
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+}
+
+.price-item:last-child {
+  margin-bottom: 0;
+}
+
+.price-item.total {
+  border-top: 1px solid var(--gray-300);
+  padding-top: var(--spacing-sm);
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+}
+
+.booking-summary {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.summary-section {
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+}
+
+.summary-section h4 {
+  margin-bottom: var(--spacing-md);
+  color: var(--gray-900);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.summary-item:last-child {
+  margin-bottom: 0;
+}
+
+.summary-item.total {
+  border-top: 1px solid var(--gray-300);
+  padding-top: var(--spacing-sm);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+}
+
+.terms-section {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 2px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+@media (max-width: 768px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .event-sidebar {
+    position: static;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-types {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .progress-steps {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .progress-steps::before {
+    display: none;
+  }
+
+  .step {
+    flex-direction: row;
+    justify-content: flex-start;
+    max-width: none;
+  }
+
+  .step-number {
+    margin-bottom: 0;
+    margin-right: var(--spacing-md);
+  }
+}

@@ -1,0 +1,15 @@
+.home {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.home section {
+  margin-bottom: var(--spacing-2xl);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .home section {
+    margin-bottom: var(--spacing-xl);
+  }
+}

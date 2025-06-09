@@ -1,0 +1,47 @@
+.home {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.home section {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.home section:not(:last-child) {
+  border-bottom: 1px solid var(--gray-100);
+}
+
+@media (max-width: 768px) {
+  .home section {
+    margin-bottom: 0;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section transitions */
+.home section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-in-out;
+}
+
+/* Loading animation for sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home section {
+  animation: fadeInUp 0.8s ease-out;
+}

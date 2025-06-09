@@ -1,0 +1,19 @@
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-svg {
+  transition: transform var(--transition-normal);
+}
+
+.logo:hover .logo-svg {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .logo-svg {
+    width: 100px;
+    height: 33px;
+  }
+}
