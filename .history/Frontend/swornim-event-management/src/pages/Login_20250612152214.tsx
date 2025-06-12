@@ -52,42 +52,45 @@ const Login: React.FC = () => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      const users = JSON.parse(localStorage.getItem("users") || "[]")
+      // For demo purposes, we'll create a mock user
+      let userName = ""
 
-      // Find user with matching email, password and userType
-      const user = users.find(
-        (u: any) =>
-          u.email === formData.email &&
-          u.password === formData.password &&
-          u.userType === formData.userType
+      // In a real app, this would come from the API response
+      switch (formData.email) {
+        case "admin@example.com":
+          userName = "Admin User"
+          break
+        case "vendor@example.com":
+          userName = "Vendor Business"
+          break
+        default:
+          userName = "John Customer"
+      }
+
+      // Store user data in localStorage
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          email: formData.email,
+          name: userName,
+          userType: formData.userType,
+          isAuthenticated: true,
+        }),
       )
 
-      if (user) {
-        // Mark user as authenticated (update users array)
-        const updatedUsers = users.map((u: any) =>
-          u.email === user.email ? { ...u, isAuthenticated: true } : { ...u, isAuthenticated: false }
-        )
-        localStorage.setItem("users", JSON.stringify(updatedUsers))
-
-        // Store current logged-in user separately
-        localStorage.setItem("user", JSON.stringify({ ...user, isAuthenticated: true }))
-
-        // Redirect based on user type
-        switch (user.userType) {
-          case "admin":
-            navigate("/admin")
-            break
-          case "vendor":
-            navigate("/vendor-dashboard")
-            break
-          default:
-            navigate("/dashboard")
-        }
-      } else {
-        setError("Invalid email, password, or user type. Please try again.")
+      // Redirect based on user type
+      switch (formData.userType) {
+        case "admin":
+          navigate("/admin")
+          break
+        case "vendor":
+          navigate("/vendor-dashboard")
+          break
+        default:
+          navigate("/dashboard")
       }
     } catch (err) {
-      setError("Login failed. Please try again.")
+      setError("Invalid credentials. Please try again.")
     } finally {
       setIsLoading(false)
     }

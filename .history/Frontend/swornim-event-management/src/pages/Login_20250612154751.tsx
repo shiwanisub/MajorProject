@@ -52,42 +52,50 @@ const Login: React.FC = () => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      const users = JSON.parse(localStorage.getItem("users") || "[]")
+      const storedUser = JSON.parse(localStorage.getItem("user") || "{}")
 
-      // Find user with matching email, password and userType
-      const user = users.find(
-        (u: any) =>
-          u.email === formData.email &&
-          u.password === formData.password &&
-          u.userType === formData.userType
-      )
+if (
+  storedUser.email === formData.email &&
+  storedUser.userType === formData.userType
+  // You can also compare password here if it's stored: && storedUser.password === formData.password
+) {
+  localStorage.setItem(
+    "user",
+    JSON.stringify({
+      ...storedUser,
+      isAuthenticated: true,
+    })
+  )
 
-      if (user) {
-        // Mark user as authenticated (update users array)
-        const updatedUsers = users.map((u: any) =>
-          u.email === user.email ? { ...u, isAuthenticated: true } : { ...u, isAuthenticated: false }
-        )
-        localStorage.setItem("users", JSON.stringify(updatedUsers))
+  // Redirect based on user type
+  switch (storedUser.userType) {
+    case "admin":
+      navigate("/admin")
+      break
+    case "vendor":
+      navigate("/vendor-dashboard")
+      break
+    default:
+      navigate("/dashboard")
+  }
+} else {
+  setError("Invalid credentials. Please try again.")
+}
 
-        // Store current logged-in user separately
-        localStorage.setItem("user", JSON.stringify({ ...user, isAuthenticated: true }))
 
-        // Redirect based on user type
-        switch (user.userType) {
-          case "admin":
-            navigate("/admin")
-            break
-          case "vendor":
-            navigate("/vendor-dashboard")
-            break
-          default:
-            navigate("/dashboard")
-        }
-      } else {
-        setError("Invalid email, password, or user type. Please try again.")
+      // Redirect based on user type
+      switch (formData.userType) {
+        case "admin":
+          navigate("/admin")
+          break
+        case "vendor":
+          navigate("/vendor-dashboard")
+          break
+        default:
+          navigate("/dashboard")
       }
     } catch (err) {
-      setError("Login failed. Please try again.")
+      setError("Invalid credentials. Please try again.")
     } finally {
       setIsLoading(false)
     }

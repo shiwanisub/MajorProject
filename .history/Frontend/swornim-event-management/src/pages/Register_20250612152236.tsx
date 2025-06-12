@@ -31,6 +31,7 @@ const Register: React.FC = () => {
     setIsLoading(true)
     setError("")
 
+    // Validate form
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match")
       setIsLoading(false)
@@ -38,37 +39,25 @@ const Register: React.FC = () => {
     }
 
     try {
+      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      // Get existing users list or empty array
-      const existingUsers = JSON.parse(localStorage.getItem("users") || "[]")
+      // Store user data in localStorage (in a real app, this would be handled by the backend)
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          email: formData.email,
+          name: `${formData.firstName} ${formData.lastName}`,
+          userType: formData.userType,
+          isAuthenticated: true,
+        }),
+      )
 
-      // Check if email already registered
-      const userExists = existingUsers.some((user: any) => user.email === formData.email)
-      if (userExists) {
-        setError("Email already registered. Please login.")
-        setIsLoading(false)
-        return
-      }
-
-      // Add new user to users list
-      const newUser = {
-        email: formData.email,
-        password: formData.password, // plain text (not for production)
-        name: `${formData.firstName} ${formData.lastName}`,
-        phone: formData.phone,
-        userType: formData.userType,
-        isAuthenticated: false,
-      }
-      existingUsers.push(newUser)
-      localStorage.setItem("users", JSON.stringify(existingUsers))
-
-      // Redirect after successful signup
+      // Redirect based on user type
       if (formData.userType === "vendor") {
         navigate("/vendor-registration")
       } else {
-        alert("Your account has been created. Please login now.")  // Show dialog
-        navigate("/login")
+        navigate("/dashboard")
       }
     } catch (err) {
       setError("Registration failed. Please try again.")
@@ -153,7 +142,7 @@ const Register: React.FC = () => {
 
             <div className="form-group">
               <label htmlFor="userType" className="form-label">
-                I am a:
+                I am registering as a:
               </label>
               <select
                 id="userType"
@@ -161,10 +150,9 @@ const Register: React.FC = () => {
                 value={formData.userType}
                 onChange={handleChange}
                 className="form-select"
-                required
               >
                 <option value="customer">Customer</option>
-                <option value="vendor">Vendor (Photographer, Decorator, etc.)</option>
+                <option value="vendor">Vendor (Service Provider)</option>
               </select>
             </div>
 
@@ -200,14 +188,23 @@ const Register: React.FC = () => {
               </div>
             </div>
 
+            <div className="form-group terms">
+              <label className="checkbox-label">
+                <input type="checkbox" required />
+                <span>
+                  I agree to the <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>
+                </span>
+              </label>
+            </div>
+
             <button type="submit" className="btn btn-primary btn-lg w-100" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <span className="loading"></span>
-                  Signing up...
+                  Creating Account...
                 </>
               ) : (
-                "Sign Up"
+                "Create Account"
               )}
             </button>
           </form>
@@ -216,7 +213,7 @@ const Register: React.FC = () => {
             <p>
               Already have an account?{" "}
               <Link to="/login" className="login-link">
-                Sign in here
+                Sign in
               </Link>
             </p>
           </div>
@@ -225,8 +222,8 @@ const Register: React.FC = () => {
         <div className="register-image">
           <img src="/images/register-bg.jpg" alt="Event celebration" />
           <div className="image-overlay">
-            <h2>Join Nepal's Premier Event Platform</h2>
-            <p>Connect with thousands of customers and grow your event business</p>
+            <h2>Plan Your Perfect Event</h2>
+            <p>Access Nepal's best event services and vendors</p>
           </div>
         </div>
       </div>

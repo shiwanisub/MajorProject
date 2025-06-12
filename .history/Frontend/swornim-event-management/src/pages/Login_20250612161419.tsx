@@ -9,19 +9,17 @@ const Login: React.FC = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    userType: "customer", // customer, vendor, admin
+    userType: "customer",
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const navigate = useNavigate()
 
-  // Check if already logged in
   useEffect(() => {
     const userData = localStorage.getItem("user")
     if (userData) {
       const user = JSON.parse(userData)
       if (user.isAuthenticated) {
-        // Redirect based on user type
         switch (user.userType) {
           case "admin":
             navigate("/admin")
@@ -49,31 +47,24 @@ const Login: React.FC = () => {
     setError("")
 
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      const users = JSON.parse(localStorage.getItem("users") || "[]")
+      const storedUser = JSON.parse(localStorage.getItem("user") || "{}")
 
-      // Find user with matching email, password and userType
-      const user = users.find(
-        (u: any) =>
-          u.email === formData.email &&
-          u.password === formData.password &&
-          u.userType === formData.userType
-      )
-
-      if (user) {
-        // Mark user as authenticated (update users array)
-        const updatedUsers = users.map((u: any) =>
-          u.email === user.email ? { ...u, isAuthenticated: true } : { ...u, isAuthenticated: false }
+      if (
+        storedUser.email === formData.email &&
+        storedUser.userType === formData.userType
+        // For real app, compare password here too
+      ) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            ...storedUser,
+            isAuthenticated: true,
+          })
         )
-        localStorage.setItem("users", JSON.stringify(updatedUsers))
 
-        // Store current logged-in user separately
-        localStorage.setItem("user", JSON.stringify({ ...user, isAuthenticated: true }))
-
-        // Redirect based on user type
-        switch (user.userType) {
+        switch (storedUser.userType) {
           case "admin":
             navigate("/admin")
             break
@@ -84,10 +75,10 @@ const Login: React.FC = () => {
             navigate("/dashboard")
         }
       } else {
-        setError("Invalid email, password, or user type. Please try again.")
+        setError("Invalid credentials. Please try again.")
       }
     } catch (err) {
-      setError("Login failed. Please try again.")
+      setError("Invalid credentials. Please try again.")
     } finally {
       setIsLoading(false)
     }
